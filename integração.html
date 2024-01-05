@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login e Calculadora</title>
+    <style>
+        /* Seu estilo CSS aqui */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: linear-gradient(45deg, cyan, yellow);
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container,
+        .calculadora-container {
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 15px;
+            color: white;
+            padding: 80px;
+            text-align: center;
+        }
+        .calculadora-container {
+            display: none;
+        }
+        input {
+            padding: 15px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+        button {
+            background-color: dodgerblue;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 10px;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: deepskyblue;
+        }
+        /* ... Seu estilo CSS adicional para a calculadora aqui ... */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <h1>Login</h1>
+            <input type="text" id="username" placeholder="Nome">
+            <br><br>
+            <input type="password" id="password" placeholder="Senha">
+            <br><br>
+            <button onclick="login()">Enviar</button>
+        </div>
+        <div class="calculadora-container">
+            <h1>Igor Schneider</h1>
+            <div class="calculadora">
+                <h1>Calculadora</h1>
+                <p id="resultado"></p>
+                <table>
+                    <tr>
+                        <td><button class="botão" onclick="clean()">C</button></td>
+                        <td><button class="botão" onclick="back()"><</button></td>
+                        <td><button class="botão" onclick="insert('/')">/</button></td>
+                        <td><button class="botão" onclick="insert('*')">X</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="botão" onclick="insert('7')">7</button></td>
+                        <td><button class="botão" onclick="insert('8')">8</button></td>
+                        <td><button class="botão" onclick="insert('9')">9</button></td>
+                        <td><button class="botão" onclick="insert('-')">-</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="botão" onclick="insert('4')">4</button></td>
+                        <td><button class="botão" onclick="insert('5')">5</button></td>
+                        <td><button class="botão" onclick="insert('6')">6</button></td>
+                        <td><button class="botão" onclick="insert('+')">+</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="botão" onclick="insert('1')">1</button></td>
+                        <td><button class="botão" onclick="insert('2')">2</button></td>
+                        <td><button class="botão" onclick="insert('3')">3</button></td>
+                        <td rowspan="2"><button class="botão" style="height: 106px;" onclick="calcular()">=</button></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button class="botão" style="width: 106px;" onclick="insert('0')">0</button></td>
+                        <td><button class="botão" onclick="insert('.')">.</button ></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        function login() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Aqui você faria a verificação do login
+            // Se o login for bem-sucedido, exiba a calculadora
+            if (username === "defaut" && password === "defaut") {
+                document.querySelector('.login-container').style.display = 'none';
+                document.querySelector('.calculadora-container').style.display = 'block';
+            } else {
+                alert("Login falhou. Verifique seu nome de usuário e senha.");
+            }
+        }
+        function insert(num)
+        {
+            var numero = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = numero + num;
+
+        }
+        function clean()
+        {
+            document.getElementById('resultado').innerHTML = "";
+        }
+        function back()
+        {
+            var resultado = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1);
+        }
+        function calcular()
+        {
+            var resultado = document.getElementById('resultado').innerHTML;
+            if(resultado)
+            {
+                document.getElementById('resultado').innerHTML = eval(resultado);
+            }
+            else
+            {
+                document.getElementById('resultado').innerHTML = "Nada..."
+            }
+        }
+
+        // ... Seu código JavaScript da calculadora aqui ...
+    </script>
+</body>
+</html>
